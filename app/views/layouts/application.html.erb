@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>VinylHeads</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title>Vinyl_Heads</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <body style="background-color:DarkTurquoise;">
   </head>
-
+  <center>
   <body>
-    <%= yield %>
+
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQfCBs4prluIiMDa055MjJsKXYIRg77fDQhv57DYTMKPDqbS1vU&usqp=CAU');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+   
+  <div class="nav">
+      <p style="text-align:left;" style="color:DarkBlue;">
+      <a style="color:DarkBlue;" href="/logout">Log Out</a>
+     </p>
+    </div>
+
+
+
+    <div class="container">
+      <p style="text-align:left;">
+        <h1 style="font-family:'Courier New';" style="color:Black;"><strong>Vinyl Heads</strong></h1>
+        <img src="https://cdn.shopify.com/s/files/1/0580/0965/products/hu8EvlLSLy6BI50kkLpQ_web_productimage_rezinfinite_vinyl_8.jpg" width="200" height="200">
+      <h3 style="font-family:'Courier New';" style="color:Black;"><strong>The App for Music Lovers.</strong></h3>
+      <h5 style="font-family:'Courier New';" style="color:Black;"><strong>start up a conversation</strong></h5>
+      </p>
+    </div>
+
+   <%= yield %>
+
   </body>
+  </center>
 </html>
