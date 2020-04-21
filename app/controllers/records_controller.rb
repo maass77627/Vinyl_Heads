@@ -2,6 +2,7 @@ class RecordsController < ApplicationController
 
     def index
         @records = Record.all
+        @records = Record.search(params[:search])
     end
     
     
@@ -22,7 +23,7 @@ class RecordsController < ApplicationController
 
     private
     def record_params
-        params.require(:record).permit(:name, :artist, :genre)
+        params.require(:record).permit(:name, :artist, :genre, :search)
     end
 
 end

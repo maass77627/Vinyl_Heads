@@ -1,0 +1,13 @@
+<center>
+
+<% @records.each do |record| %><br>
+    <%= link_to record.title, record_path(record) %>
+    <% end %>
+    
+    
+   <%= form_tag(records_path, method: :get) do %>
+   <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag ("Search") %>
+    <% end %>
+    
+  </center>  
