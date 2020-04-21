@@ -1,12 +1,13 @@
+
+<ul>
 <% @posts.each do |post| %>
-    <%= post.name %>
-    <%= post.contents %>
+  <li><%= post.name %></li>
+  binding.pry
+  <li><%= post.record.title %></li>
+  <li><%= post.record.image %></li>
+  <li><%= post.contents %></li>
 
+    <% end %>
 
-<%= link_to "Browse Records", records_path %>
-<br>
-<%= link_to "Make a Post", new_post_path %>
-<br>
-<%= link_to "View my collection", user_path(@current_user) %>
-<% end %>
+    </ul>
 

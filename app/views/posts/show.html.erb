@@ -1,13 +1,16 @@
-show
+<center>
+
 <h2><%= @post.name %></h2>
 <p>
-<%= @post.record.title %>
-  <%= image_tag @post.record.image %>
+<%= @post.record.title %><br>
+  <%= image_tag @post.record.image %><br>
 Contents: <%= @post.contents %>
 
 </p>
 Comments:
   <% @post.comments.each do |comment| %>
     <%= link_to comment.user.username, user_path(comment.user) %> said
-    <%= comment.content %>
+    <%= comment.message %>
   <% end %>
+
+  </center>

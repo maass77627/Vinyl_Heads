@@ -10,11 +10,15 @@ class UsersController < ApplicationController
 
     end
 
+    
+
     def create
         @user = User.create(user_params)
+        @user = current_user
         if @user.save
+            #binding.pry
             session[:user_id] = @user.id
-            redirect_to posts_path
+            redirect_to user_path(@user)
         else
             render :new
         end

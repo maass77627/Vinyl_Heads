@@ -1,5 +1,12 @@
 <h2><%= @user.username %> </h2> has commented on the following posts:
- 
+ <ul>
 <% @user.posts.each do |post| %>
-  <%= link_to post.title, post_path %>
+<li><%= link_to post.name, post_path %><li>
 <% end %>
+
+<li><%= link_to "Browse Records", records_path %><li>
+<br>
+<li><%= link_to "Make a Post", new_post_path %><li>
+<br>
+<li><%= link_to "View all Records", posts_path %><li>
+</ul>
