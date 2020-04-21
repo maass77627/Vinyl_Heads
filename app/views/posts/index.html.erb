@@ -1,8 +1,12 @@
-
+<% @posts.each do |post| %>
+    <%= post.name %>
+    <%= post.contents %>
 
 
 <%= link_to "Browse Records", records_path %>
 <br>
 <%= link_to "Make a Post", new_post_path %>
 <br>
-<%= link_to "View my collection", user_path(@user) %>
+<%= link_to "View my collection", user_path(@current_user) %>
+<% end %>
+

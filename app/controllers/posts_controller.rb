@@ -1,29 +1,35 @@
 class PostsController < ApplicationController
 
     def index
+        @current_user = current_user
         @posts = Post.all
     end
 
     def new
         @post = Post.new
-        @post.records.build(title: 'album')
-        @post.records.build(title: 'new')
+        @post.build_record(title: 'album')
     end
 
     def create
         @post = Post.create(post_params)
+        binding.pry
+         @post.user = current_user
+         @post.record.image.attach(params[:post][:image])
         if @post.save
-            redirect_to post_path
+            redirect_to post_path(@post)
+        else 
+            render :new 
         end
     end
         
     def show
-        @post = Post.find_by(params[:id])
+        @post = Post.find(params[:id])
+        #binding.pry
     end
 
     private
     
     def post_params
-        params.require(:post).permit(:name, :contents, records_attributes: [:title])
+        params.require(:post).permit(:name, :contents, record_attributes: [:title], user_ids: [])
     end
 end

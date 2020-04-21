@@ -1,6 +1,8 @@
 class Record < ApplicationRecord
-    belongs_to :user
-    belongs_to :post
-    belongs_to :genre
-    belongs_to :artist
+    belongs_to :user, optional: true 
+    belongs_to :post, optional: true 
+    belongs_to :genre, optional: true
+    belongs_to :artist, optional: true
+    has_one_attached :image
+
 end

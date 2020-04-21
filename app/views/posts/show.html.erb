@@ -1,7 +1,10 @@
 show
 <h2><%= @post.name %></h2>
 <p>
-  Contents: <%= @post.contents %>
+<%= @post.record.title %>
+  <%= image_tag @post.record.image %>
+Contents: <%= @post.contents %>
+
 </p>
 Comments:
   <% @post.comments.each do |comment| %>
