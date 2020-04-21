@@ -1,7 +1,18 @@
 <center>
+<li><%= link_to "Browse Records", records_path %><li>
+<br>
+<li><%= link_to "Make a Post", new_post_path %><li>
+<br>
+<li><%= link_to "View all Records", posts_path %><li>
+</ul>
 
-<h2><%= @post.name %></h2>
+<% @post.user = current_user %><br>
+
+<%= @post.user.username.pluralize.upcase %> post: <br>
+ 
+Post title: <h3><%= @post.name %></h3>
 <p>
+Album title:
 <%= @post.record.title %><br>
   <%= image_tag @post.record.image %><br>
 Contents: <%= @post.contents %>

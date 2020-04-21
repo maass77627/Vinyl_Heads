@@ -15,6 +15,7 @@ class PostsController < ApplicationController
          @post.user = current_user
          @post.record.image.attach(params[:post][:image])
         if @post.save
+            #binding.pry
             redirect_to post_path(@post)
         else 
             render :new 
@@ -23,8 +24,7 @@ class PostsController < ApplicationController
         
     def show
         @post = Post.find(params[:id])
-        #binding.pry
-    end
+        end
 
     private
     

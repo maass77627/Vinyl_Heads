@@ -1,13 +1,11 @@
 
 <ul>
-<% @posts.each do |post| %>
-  <li><%= post.name %></li>
-  binding.pry
-  <li><%= post.record.title %></li>
-  <li><%= post.record.image %></li>
-  <li><%= post.contents %></li>
-
-    <% end %>
-
-    </ul>
+<%= @post.each do |post| %>
+<% post.user = current_user %>
+<li><%= post.name %></li>
+<li><%= post.record.title %></li>
+<li><%= post.record.image %></li>
+<li><%= post.contents %></li>
+ </ul>
+ <% end %>
 
