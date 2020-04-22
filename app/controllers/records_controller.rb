@@ -7,12 +7,13 @@ class RecordsController < ApplicationController
     
     def new
         @record = Record.new
+        @record.build_post(name: params[:name], contents: params[:contents])
     end
 
     def create
         @record = Record.create(record_params)
         if @record.save
-            redirect_to record_path
+            redirect_to record_path(@record)
         end
     end
     
@@ -22,7 +23,7 @@ class RecordsController < ApplicationController
 
     private
     def record_params
-        params.require(:record).permit(:name, :artist, :genre)
+        params.require(:record).permit(:name, post_attributes: [:name, :contents] post_ids: [])
     end
 
 end

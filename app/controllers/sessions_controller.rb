@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
 
     def new
+        if current_user
+            redirect_to '/'
+          else
+            @user = User.new
+          end
 
     end
 

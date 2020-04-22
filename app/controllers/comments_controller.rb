@@ -15,9 +15,16 @@ class CommentsController < ApplicationController
         else 
             render :new
     end 
+    end 
 
     def show
         @comment.find_by(params_:id)
 
+    end 
+
+    private 
+
+    def comment_params
+        params.require(:comment).permit(:message, user_ids: [])
     end 
 end

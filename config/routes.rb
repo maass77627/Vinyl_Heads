@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'application#home'
   resources :artists
   get '/signup' => 'users#new'
 post '/signup' => 'users#create'

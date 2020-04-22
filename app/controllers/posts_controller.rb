@@ -3,11 +3,13 @@ class PostsController < ApplicationController
     def index
         @current_user = current_user
         @posts = Post.all
+        @post.build_record(title: params[:title], post_id: params[:post_id])
     end
 
     def new
         @post = Post.new
-        @post.build_record(title: 'album')
+        @comment = Comment.new(post_id: params[:post_id])
+        @post.build_record(title: params[:title], post_id: params[:post_id])
     end
 
     def create
