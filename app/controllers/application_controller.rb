@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :logged_in? #:current_user
+    #include ApplicationHelper:: SessionsHelper
     before_action :current_user
 
 
@@ -7,15 +7,18 @@ class ApplicationController < ActionController::Base
     def home 
     end 
     
-    def logged_in?
-        !!current_user
-    end
+   private
 
-    
-    def current_user
+   helper_method :login(user), :current_user
+
+   def login(user)
+    session[:current_user_id]
+    @current_user = User.find(session[:current_user_id])
+   end 
+
+   def current_user
         if session[:current_user_id]
             @current_user = User.find(session[:current_user_id])
-       #    @current_user = User.find(session[:user_id])
         end
     end
 end
