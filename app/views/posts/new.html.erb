@@ -4,7 +4,7 @@
         <%= f.label :contents %>
         <%= f.text_field :contents %><br>
        
-        <%= f.fields_for :record do |record_attributes| %>
+        <%= f.fields_for  @post.build_record do |record_attributes| %>
         <%= record_attributes.label :title %>
         <%= record_attributes.text_field :title %><br>
         
@@ -14,5 +14,3 @@
         <%= f.file_field :image %><br>
         <%= f.submit %>
         <% end %>
-
-        

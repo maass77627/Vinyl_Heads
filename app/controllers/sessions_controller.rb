@@ -7,10 +7,11 @@ class SessionsController < ApplicationController
 def create
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
-        redirect_to user_path
+        session[:current_user_id] = @user.id
+        redirect_to '/home'
     else
-        render :new
+        redirect_to '/login'
+        #render :new
     end
 end
 

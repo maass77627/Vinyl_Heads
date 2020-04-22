@@ -3,8 +3,8 @@
 <%= @posts.each do |post| %>
 <% post.user = current_user %>
 <li><%= post.name %></li>
-<li><%= post.current_record.title %></li>
-<li><%= post.current_record.image %></li>
+<li><%= post.record.title %></li>
+<li><%= post.record.image %></li>
 <li><%= post.contents %></li>
  </ul>
  <% end %>

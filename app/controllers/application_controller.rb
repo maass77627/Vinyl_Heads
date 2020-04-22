@@ -1,27 +1,21 @@
 class ApplicationController < ActionController::Base
-    helper_method :logged_in?, :current_user
+    helper_method :logged_in? #:current_user
+    before_action :current_user
+
+
+
+    def home 
+    end 
+    
     def logged_in?
         !!current_user
     end
 
-    def current_image
-        image = @post.find(params[:post][:image])    
-        if image.save &
-           @post.record.image.attach
-           @post.record.image.save
-           @post.record.image
-        end
-    end 
-       
-       def current_record
-        record = @post.find(params[:post][:record])
-        if record.save
-           @post.record
-        end 
-    end
     
     def current_user
-        @current_user = User.find(session[:user_id])
+        if session[:current_user_id]
+            @current_user = User.find(session[:current_user_id])
+       #    @current_user = User.find(session[:user_id])
+        end
     end
-
 end

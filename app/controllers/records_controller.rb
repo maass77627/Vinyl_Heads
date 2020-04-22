@@ -10,10 +10,13 @@ class RecordsController < ApplicationController
         @record = Record.new
     end
 
+
     def create
         @record = Record.create(record_params)
+        #@record.user = current_user
         if @record.save
-            redirect_to record_path
+            #binding.pry
+            redirect_to record_path(@record)
         end
     end
     
@@ -23,7 +26,7 @@ class RecordsController < ApplicationController
 
     private
     def record_params
-        params.require(:record).permit(:name, :artist, :genre, :search)
+        params.require(:record).permit(:title, :artist, :genre, :search, post_attributes: [:name])
     end
-
+    
 end
