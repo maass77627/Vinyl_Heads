@@ -15,6 +15,7 @@ class UsersController < ApplicationController
         @user = User.create(user_params)
         #@user = current_user
        # binding.pry
+       if @user.valid?
         if @user.save
             session[:user_id] = @user.id
             redirect_to user_path(@user)

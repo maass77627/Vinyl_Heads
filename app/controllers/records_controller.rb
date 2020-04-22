@@ -23,7 +23,7 @@ class RecordsController < ApplicationController
 
     private
     def record_params
-        params.require(:record).permit(:name, post_attributes: [:name, :contents] post_ids: [])
+        params.require(:record).permit(:name, post_attributes: [:name, :contents], post_ids: [])
     end
 
 end
