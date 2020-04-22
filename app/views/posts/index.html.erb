@@ -1,8 +1,8 @@
-
+<center>
 <ul>
 <% @posts.each do |post| %>
   <li><%= post.name %></li>
-  binding.pry
+  
   <li><%= post.record.title %></li>
   <li><%= post.record.image %></li>
   <li><%= post.contents %></li>
@@ -10,4 +10,4 @@
     <% end %>
 
     </ul>
-
+</center>
