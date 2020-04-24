@@ -4,6 +4,7 @@ class Post < ApplicationRecord
     has_many :comments
     has_many :users, through: :comments
     accepts_nested_attributes_for :record
+    has_one_attached :image
 
 
 

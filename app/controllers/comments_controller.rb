@@ -19,7 +19,6 @@ class CommentsController < ApplicationController
 
     def show
         @comment.find_by(params_:id)
-
     end 
 
     private 

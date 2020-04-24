@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         @user = User.create(user_params)
         #@user = current_user
        # binding.pry
-       if @user.valid?
+      # if @user.valid?
         if @user.save
             session[:user_id] = @user.id
             redirect_to user_path(@user)
@@ -32,6 +32,13 @@ end
         @user =User.find(params[:id])
 
     end
+
+    def destroy
+        @user = User.find(params[:id])
+        @user.destroy
+      
+        redirect_to new_user_path
+        end 
 
     private
 

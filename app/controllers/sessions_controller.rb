@@ -1,17 +1,18 @@
 class SessionsController < ApplicationController
 
     def new
-        if current_user
-            redirect_to '/'
-          else
+       if current_user
+           redirect_to '/'
+           else
             @user = User.new
           end
+        end 
 
-    end
 
 def create
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
+        @user.save
         session[:user_id] = @user.id
         redirect_to user_path
     else
@@ -20,6 +21,7 @@ def create
 end
 
 def destroy
-
+    session[:user] = nil
+    redirect_to root_path
 end
 end

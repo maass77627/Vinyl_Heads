@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
 
     def index
-        @current_user = current_user
+       # @current_user = current_user
         @posts = Post.all
-       #@post.build_record(title: params[:title], post_id: params[:post_id])
-       @posts.each do |post|
-       post.record = Record.new(title: :title)
-    end
+       # @posts.each do |post|
+       #post.record = Record.new(title: :title)   
+   # end
+   #binding.pry
     end 
 
     def new
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     def create
         @post = Post.create(post_params)
          @post.user = current_user
-         @post.record.image.attach(params[:post][:image])
+         @post.image.attach(params[:post][:image]) #record
         if @post.save
             redirect_to post_path(@post)
         else 
@@ -50,12 +50,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
   
-    redirect_to post_path
+    redirect_to new_post_path
     end 
 
     private
     
     def post_params
-        params.require(:post).permit(:name, :contents, record_attributes: [:title], user_ids: [])
+        params.require(:post).permit(:name, :contents, image: [], record_attributes: [:title], user_ids: [])
     end
 end

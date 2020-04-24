@@ -2,10 +2,16 @@
 <ul>
 <% @posts.each do |post| %>
   <li><%= post.name %></li>
-  
-  <li><%= post.record.title %></li>
-  <li><%= post.record.image %></li>
   <li><%= post.contents %></li>
+  <li><%= post.record.title %></li>
+  <%= post.record.image %><br>
+ 
+
+    <div class="post">
+      <span><%= post.name %></span>
+      <%= link_to "Delete", post, method: :delete, data: { confirm: "Really?" } %>
+    </div>
+    
 
     <% end %>
 
