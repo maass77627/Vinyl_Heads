@@ -45,10 +45,19 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
         #binding.pry
     end
+
+    def edit
+    end 
+
+    def update
+     @post = Post.find(params[:id])
+     @post.update(title: params[:post][:title], description: params[:post][:description])
+     redirect_to post_path(@post)
+    end 
     
     def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
+     @post = Post.find(params[:id])
+     @post.destroy
   
     redirect_to new_post_path
     end 

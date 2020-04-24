@@ -17,18 +17,22 @@ body {
 
   <div class="nav">
       <p style="text-align:left;" style="color:DarkBlue;">
-      <a style="color:DarkBlue;" href="/logout">Log Out</a>
+
+      <% if current_user %>
+      <%=     link_to "Logout", logout_path %>
+      <% else %>
+      <%=     link_to "Login", :controller => 'sessions', :action => 'new' %>
+      <% end %>
+    
      </p>
     </div>
-
-   
 
 
 
     <div class="container">
       <p style="text-align:left;">
         <h1 style="font-family:'Courier New';" style="color:Black;"><strong>Vinyl Heads</strong></h1>
-        <img src="https://cdn.shopify.com/s/files/1/0580/0965/products/hu8EvlLSLy6BI50kkLpQ_web_productimage_rezinfinite_vinyl_8.jpg" width="170" height="170">
+        <img src="https://cdn.shopify.com/s/files/1/0580/0965/products/hu8EvlLSLy6BI50kkLpQ_web_productimage_rezinfinite_vinyl_8.jpg" width="150" height="150">
       <h3 style="font-family:'Courier New';" style="color:Black;"><strong>The App for Music Lovers.</strong></h3>
       <h5 style="font-family:'Courier New';" style="color:Black;"><strong>start up a conversation</strong></h5>
       </p>

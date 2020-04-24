@@ -7,7 +7,11 @@
         <%= f.fields_for :record do |record_attributes| %>
         <%= record_attributes.label :title %>
         <%= record_attributes.text_field :title %><br>
-        
+        <%= f.fields_for :genre do |g| %>
+                <%= g.collection_select :genre, Genre.all, :name, :name %><br>
+                <%= g.text_field :content %><br>
+                
+              <% end %>
 
         <% end %>
         <%= f.label :image %>

@@ -1,16 +1,22 @@
 <center>
 <ul>
 <% @posts.each do |post| %>
-  <li><%= post.name %></li>
-  <li><%= post.contents %></li>
-  <li><%= post.record.title %></li>
-  <%= post.record.image %><br>
- 
+  <li><%= post.name %></li> 
+  <li><%= post.contents %></li> 
+  <li><%= post.record.title %></li> 
+  <li><%= image_tag post.image %></li>
 
-    <div class="post">
-      <span><%= post.name %></span>
-      <%= link_to "Delete", post, method: :delete, data: { confirm: "Really?" } %>
-    </div>
+
+  
+  
+  </p>
+  <%= link_to "Add Comment", new_comment_path(post_id: post.id) %>
+  <br>
+  Comments:
+    <% post.comments.each do |comment| %>
+      <%= link_to comment.user.username, user_path(comment.user) %> said
+      <%= comment.message %>
+    <% end %>
     
 
     <% end %>
