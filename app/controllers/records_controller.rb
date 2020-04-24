@@ -22,7 +22,15 @@ class RecordsController < ApplicationController
     
     def show
         @record = Record.find_by(params[:id])
+        binding.pry
     end
+
+    def destroy
+        @record = Record.find(params[:id])
+        @record.destroy
+      
+        redirect_to records_path
+      end
 
     private
     def record_params
