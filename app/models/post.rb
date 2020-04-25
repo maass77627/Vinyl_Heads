@@ -5,15 +5,17 @@ class Post < ApplicationRecord
     has_many :users, through: :comments
     accepts_nested_attributes_for :record
     has_one_attached :image
+    has_many :user_posts
+    has_many :users, through: :user_posts
 
 
 
 
-    def user_ids=(ids)
-        ids.each do |id|
-        user = User.find(id)
-          self.users << user
+       def user_ids=(ids)
+       ids.each do |id|
+       user = User.find(id)
+         self.users << user
         end
-      end
+     end
  
 end

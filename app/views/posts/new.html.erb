@@ -3,6 +3,7 @@
         <%= f.text_field :name %><br>
         <%= f.label :contents %>
         <%= f.text_field :contents %><br>
+        <%= f.hidden_field :user_id %>
        
         <%= f.fields_for :record do |record_attributes| %>
         <%= record_attributes.label :title %>
@@ -10,9 +11,7 @@
         <%= f.fields_for :genre do |g| %>
                 <%= g.label :genre %>
                 <%= g.collection_select :genre, Genre.all, :name, :name %><br>
-                
-                
-              <% end %>
+                <% end %>
 
         <% end %>
         <%= f.label :image %>

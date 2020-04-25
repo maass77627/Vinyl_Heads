@@ -1,10 +1,13 @@
 <center>
 <ul>
 <% @posts.each do |post| %>
-  <li><%= post.name %></li> 
+  
+  <li><h2><%= post.name %></h2></li> 
   <li><%= post.contents %></li> 
-  <li><%= post.record.title %></li> 
+  <li><h3><%= post.record.title %></h3></li> 
+  <% if post.image.attached? %>
   <li><%= image_tag post.image %></li>
+  <% end %>
 
 
   

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
-    helper_method :logged_in?, :current_user
-    
+    before_action :authorized
+    helper_method :logged_in?
+    helper_method :current_user
     def home
     end 
     
@@ -15,4 +16,7 @@ class ApplicationController < ActionController::Base
         @current_user = nil
     end
 end
+def authorized
+    redirect_to '/' unless logged_in?
+ end
 end

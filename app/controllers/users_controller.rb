@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+    skip_before_action :authorized, only: [:new, :create]
+   
     def index
         @users = User.all
 
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
         #@user = current_user
         if @user.save
             session[:user_id] = @user.id
-            redirect_to user_path(@user)
+            redirect_to '/'
         else
             render :new
         end

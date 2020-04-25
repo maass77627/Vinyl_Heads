@@ -1,18 +1,12 @@
 class PostsController < ApplicationController
 
     def index
-       # @current_user = current_user
         @posts = Post.all
-       # @posts.each do |post|
-       #post.record = Record.new(title: :title)   
-   # end
-   #binding.pry
     end 
 
     def new
         @post = Post.new
         @comment = Comment.new(post_id: params[:post_id])
-       # @post.build_record(title: params[:title], post_id: params[:post_id])
         @post.record = Record.new(title: :title)
     end
 
@@ -45,15 +39,6 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
         #binding.pry
     end
-
-    def edit
-    end 
-
-    def update
-     @post = Post.find(params[:id])
-     @post.update(title: params[:post][:title], description: params[:post][:description])
-     redirect_to post_path(@post)
-    end 
     
     def destroy
      @post = Post.find(params[:id])
