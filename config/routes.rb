@@ -10,4 +10,5 @@ resources :comments
 resources :posts
 resources :artists
 resources :records
+resources :genres
 end

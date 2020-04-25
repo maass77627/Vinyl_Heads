@@ -6,6 +6,12 @@
   <%= image_tag @post.image %><br> 
 Contents: <%= @post.contents %>
 
+Comments:
+  <% @post.comments.each do |comment| %>
+    <%= link_to comment.user.username, user_path(comment.user) %> said
+    <%= comment.content %>
+  <% end %>
+
 <div class="@post">
       <span><%= @post.name %></span>
       <%= link_to "Delete", @post, method: :delete, data: { confirm: "Really?" } %>
