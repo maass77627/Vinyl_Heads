@@ -1,7 +1,7 @@
 class Record < ApplicationRecord
-    belongs_to :user, optional: #true 
-    belongs_to :post, optional: #true 
-    belongs_to :genre, optional: #true
+    belongs_to :user#, optional: true 
+    belongs_to :post#, optional: true 
+    belongs_to :genre, optional: true
     belongs_to :artist, optional: true
     has_one_attached :image
     accepts_nested_attributes_for :genre, :post

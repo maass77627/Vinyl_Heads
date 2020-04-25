@@ -5,8 +5,8 @@ class Post < ApplicationRecord
     has_many :users, through: :comments
     accepts_nested_attributes_for :record
     has_one_attached :image
-    has_many :user_posts
-    has_many :users, through: :user_posts
+    #has_many :user_posts
+   # has_many :users, through: :user_posts
 
 
 
