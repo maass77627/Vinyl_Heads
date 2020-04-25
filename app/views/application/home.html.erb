@@ -1,15 +1,29 @@
+<<<<<<< HEAD
 <center>
 <h1> Welcome! </h1>
 
 <% if logged_in? %>
     <h1>You are Logged In, <%= current_user.username %></h1>
     <%= link_to current_user.username, user_path(current_user.id) %><br>
+=======
+<% if session[:user_id] %>
+  <h1><%= @user.name %></h1>
+  <h2>Email: <%= @user.email %></h2>
+  <h2>Facebook UID: <%= @user.uid %></h2>
+  <img src="<%= @user.image %>">
+<% else %>
+  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
+>>>>>>> 792ee71d4d5f803d990291607a895611529ecb45
 <% end %>
 
 
 
 
+<<<<<<< HEAD
 <%= link_to "Log_in", login_url %><br>
 <%= link_to "Sign_up", '/signup' %>
 
 </center>
+=======
+
+>>>>>>> 792ee71d4d5f803d990291607a895611529ecb45

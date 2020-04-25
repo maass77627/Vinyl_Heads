@@ -1,5 +1,6 @@
 <center>
 <ul>
+<<<<<<< HEAD
 <% @posts.each do |post| %>
   
   <li><h2><%= post.name %></h2></li> 
@@ -27,3 +28,14 @@
     </ul>
 </center>
 
+=======
+<%= @posts.each do |post| %>
+<% post.user = current_user %>
+<li><%= post.name %></li>
+<li><%= post.record.title %></li>
+<li><%= post.record.image %></li>
+<li><%= post.contents %></li>
+ </ul>
+ <% end %>
+ 
+>>>>>>> 792ee71d4d5f803d990291607a895611529ecb45
