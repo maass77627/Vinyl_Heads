@@ -4,7 +4,7 @@
 <% if logged_in? %>
     <h1>You are Logged In, <%= current_user.username %></h1>
     <%= link_to current_user.username, user_path(current_user.id) %><br>
-<%end%>
+<% end %>
 
 
 
