@@ -27,8 +27,8 @@
         <%= record_attributes.label :title %>
         <%= record_attributes.text_field :title %><br>
         
-        
-        <%= f.fields_for :genres, @post.genres.build do |genres_fields| %>
+        <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
+        <%= f.fields_for :genre, @post.genres.build do |genres_fields| %>
                 <%= genres_fields.label :genre %>
                 <%= genres_fields.collection_select :genres, Genre.all, :name, :name %><br>
                

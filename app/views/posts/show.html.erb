@@ -50,8 +50,8 @@ Comments:
 
 <div class="@post">
       <span><%= @post.name %></span>
-      <%= link_to "Delete", @post, method: :delete, data: { confirm: "Really?" } %>
-      
+      #<%= link_to "Delete", @post, method: :delete, data: { confirm: "Really?" } %>
+      <%= button_to "Delete Post", post_path(@post), method: :delete %>
     </div>
     <% if current_user %>
     <%= link_to @post.user.username, user_path(current_user.id) %><br>

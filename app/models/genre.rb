@@ -2,8 +2,8 @@ class Genre < ApplicationRecord
     has_many :records
     has_many :artists
     #has_many :posts, inverse_of: :genre
-    has_many :post_genres
-   has_many :posts, through: :post_genres
+    has_many :posts_genre
+   has_many :posts, through: :posts_genre
     
    
    def post_ids=(ids)

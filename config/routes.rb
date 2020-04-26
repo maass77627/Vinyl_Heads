@@ -5,10 +5,12 @@ post '/signup', to: 'users#create'
 get '/login', to: "sessions#new", as: "login"
 post '/login', to: "sessions#create"
 get '/logout', to: "sessions#destroy", as: "logout"
-get 'authorized', to: 'sessions#page_requires_login'
+#get 'authorized', to: 'sessions#page_requires_login'
+get '/auth/facebook/callback' => 'sessions#facebook' #changedfromcreate
 resources :users
-resources :comments
+
 resources :posts
+resources :comments
 resources :artists
 resources :records
 resources :genres

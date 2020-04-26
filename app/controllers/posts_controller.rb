@@ -12,7 +12,7 @@ class PostsController < ApplicationController
         @post.user = current_user #change inserted 
         @post.user.id = current_user.id
         new_record = @post.build_record(title: :title)
-       # new_genre = @post.build_genre(name: :name)
+       
        @post.record = Record.new(title: :title)
        @post.record.user = current_user
        @post.record.save

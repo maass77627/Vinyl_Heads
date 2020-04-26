@@ -14,8 +14,8 @@ class Post < ApplicationRecord
     has_one_attached :image
     #has_many :user_posts
    # has_many :users, through: :user_posts
-   has_many :post_genres
-   has_many :genres, through: :post_genres
+   has_many :posts_genre
+   has_many :genres, through: :posts_genre
 
       
   def genre_attributes=(genre_attribute)

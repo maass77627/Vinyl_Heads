@@ -14,6 +14,20 @@
   </div>
 <% end %>
 
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {
+  background-color: lightgrey;
+  width: 400px;
+  border: 10px solid darkgrey;
+  padding: 20px;
+  margin: 20px;
+}
+</style>
+</head>
+<body>
 
 
 
@@ -24,7 +38,8 @@
 <% @posts.each do |post| %>
   
   <li><h2><%= post.name %></h2></li> 
-  <li><%= post.contents %></li> 
+  <div>
+  <li><%= post.contents %></li> </div>
   <% if !post.record.nil? %> 
  <li><h3><%= post.record.title %></h3></li> 
  <% end %>

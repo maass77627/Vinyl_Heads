@@ -1,4 +1,17 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {
+  background-color: lightgrey;
+  width: 200px;
+  border: 5px solid darkgrey;
+  padding: 10px;
+  margin: 20px;
+}
+</style>
+</head>
+<body>
 <center>
 <h2><%= @user.username %> </h2> has commented on the following posts:
 
@@ -10,13 +23,13 @@ Comments:
 
   <ul>
 <% @user.posts.each do |post| %>
-  
-<li><%= link_to post.name, post_path(post) %><li>
+<div>
+<li><%= link_to post.name, post_path(post) %><li></div>
 <% end %>
 
 <li><%= link_to "Browse Records", records_path %><li>
 <br>
-<li><%= link_to "Make a Post", new_post_path(:user_id => @users) %><li>  #changes
+<li><%= link_to "Make a Post", new_post_path(:user_id => @users) %><li>  
 <br>
 <li><%= link_to "View all Records", posts_path %><li>
 </ul>

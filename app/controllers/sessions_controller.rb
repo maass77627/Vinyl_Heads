@@ -15,9 +15,22 @@ def create
         session[:user_id] = @user.id
         redirect_to '/'
     else
-       redirect_to sign_up_path
+       redirect_to signup_path
     end
 end
+
+def facebook
+    @user = User.find_or_create_by(uid: auth['uid']) do |u|
+      u.uid = auth['uid']
+      u.password = 'Temporary'
+      u.email = auth['info']['email']
+      #u.image = auth['info']['image']
+    end
+
+    session[:user] = @user
+
+    redirect_to '/'
+  end
 
 def destroy
     session[:user_id] = nil
@@ -25,6 +38,10 @@ def destroy
 end
 
 private
+
+def auth
+    request.env['omniauth.auth']
+  end
 
 def sessions_params
     params.require(:user).permit(:email, :password, :username)
