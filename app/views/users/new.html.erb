@@ -1,7 +1,8 @@
-<<<<<<< HEAD
-<h2>Sign Up</h2>
 
 <center>
+<h2>Sign Up</h2>
+
+
 <%= form_for @user do |f| %>
   <%= f.label :username %>
   <%= f.text_field :username %><br>
@@ -12,17 +13,3 @@
   <%= f.submit %>
 <% end %>
 </center>
-=======
-<h2> Sign up </h2>
-<%= form_tag("/users") do %>
-    <p>
-    <%= label_tag "username:" %>
-    <%= text_field_tag "email" %>
-    </p>
-    <%= label_tag "email:" %>
-    <%= text_field_tag "email" %>
-    <%= label_tag "password:" %>
-    <%= text_field_tag "password" %>
-    <%= submit_tag "Sign up" %>
-    <% end %>
->>>>>>> 792ee71d4d5f803d990291607a895611529ecb45

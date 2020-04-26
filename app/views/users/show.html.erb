@@ -2,18 +2,15 @@
 <center>
 <h2><%= @user.username %> </h2> has commented on the following posts:
 
-
 Comments:
   <% @user.comments.each do |comment| %>
     <%= link_to comment.user.username, user_path(comment.user) %> said
     <%= comment.message %>
   <% end %>
 
-
-
- <ul>
+  <ul>
 <% @user.posts.each do |post| %>
-<li><%= link_to post.name, post_path %><li>
+<li><%= link_to post.name, post_path(post) %><li>
 <% end %>
 
 <li><%= link_to "Browse Records", records_path %><li>

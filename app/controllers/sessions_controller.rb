@@ -1,44 +1,37 @@
 class SessionsController < ApplicationController
-    skip_before_action :authorized, only: [:new, :create]
+   # skip_before_action :authorized, only: [:new, :create]
     def new
-       
+        if current_user
+            redirect_to '/'
+          else
+            @user = User.new
+          end
         end 
 
-
 def create
-    @user = User.find_by(email: params[:email])
-    if @user && @user.authenticate(params[:password])
-<<<<<<< HEAD
+    @user = User.find_by(email: params[:user][:email])
+    if @user && @user.authenticate(params[:user][:password])
         @user.save
         session[:user_id] = @user.id
-        redirect_to home_path#, notice: "Logged in!"
+        redirect_to '/'
     else
-       # flash.now[:alert] = "Email or password is invalid"
-        render :new
-=======
-        session[:current_user_id] = @user.id
-        redirect_to '/home'
-    else
-        redirect_to '/login'
-        #render :new
->>>>>>> 792ee71d4d5f803d990291607a895611529ecb45
+       redirect_to sign_up_path
     end
 end
 
 def destroy
-<<<<<<< HEAD
     session[:user_id] = nil
-    redirect_to '/', notice: "Logged out!"
-=======
-    reset_session
-    redirect_to "/"
-
->>>>>>> 792ee71d4d5f803d990291607a895611529ecb45
+    redirect_to '/'
 end
 
-    def page_requires_login
+private
 
-    end
+def sessions_params
+    params.require(:user).permit(:email, :password, :username)
+end 
+   # def page_requires_login
+
+   # end
 end
 
 

@@ -4,10 +4,12 @@
  
 
 <h1><%= @record.title %></h1>
-<%= @record.image %>
 
- 
 
-  <% @record.post %>
-    <li><%= link_to @record.post.name, post_path(@record.post) %></li>
- 
+<div class="@record">
+<span><%= @record.title %></span>
+<%= link_to "Delete", @record, method: :delete, data: { confirm: "Really?" } %>
+
+</div>
+
+  
