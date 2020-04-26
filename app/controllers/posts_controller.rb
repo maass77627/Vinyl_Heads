@@ -1,22 +1,23 @@
 class PostsController < ApplicationController
 
     def index
+        @current_user = current_user
         @posts = Post.all
-       #@posts.each do |post|
-       #new_record = @post.build_record(name: "ns")
-    # end 
-    end 
+        end 
+       
 
     def new
+      if current_user    #change
         @post = Post.new
-        @post.user = current_user
+        @post.user = current_user #change inserted 
+        @post.user.id = current_user.id
         new_record = @post.build_record(title: :title)
-       # @post.comment = Comment.new(post_id: params[:post_id])
-        @post.record = Record.new(title: :title)
-        @post.record.user = current_user
+       # new_genre = @post.build_genre(name: :name)
+       @post.record = Record.new(title: :title)
+       @post.record.user = current_user
        @post.record.save
     end
-
+  end #change
     def create
         @post = Post.create(post_params)
        # binding.pry
@@ -58,6 +59,6 @@ class PostsController < ApplicationController
     private
     
     def post_params
-        params.require(:post).permit(:name, :contents, :genre, :user_id, :image, record_attributes: [:title, :user_id])
+      params.require(:post).permit(:name, :contents, :image, record_attributes: [:title, :user_id], genre_ids: [], genres_attributes: [:name]) #genrechangetook out user id
     end
 end

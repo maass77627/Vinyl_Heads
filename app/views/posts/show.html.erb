@@ -1,3 +1,24 @@
+<% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@post.errors.count, "error") %>
+      prohibited this post from being saved:
+    </h2>
+ 
+    <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+
+
+
+
 <center>
 <li><%= link_to "Browse Records", records_path %><li>
 <br>
@@ -31,6 +52,31 @@ Comments:
       <%= link_to "Delete", @post, method: :delete, data: { confirm: "Really?" } %>
       
     </div>
+    <% if current_user %>
+    <%= link_to @post.user.username, user_path(current_user.id) %><br>
+    <% end %>
+   #########
+    <p>Users</p>
+<ul>
+<% @post.users.uniq.each do |user| %>
+  <li><%= link_to user.username, user_path(user) %></li>
+<% end %>
+</ul>
+<h3>Add a New Comment</h3>
+<%= form_for(@comment = Comment.new) do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content %><br /><br />
+  <%= f.label "Username" %>
+  <%= f.collection_select :user_id, User.all, :id, :username, :include_blank => true %><br /><br />
+  <%= f.label "New User:" %>
+  <%= f.fields_for :user, @comment.build_user do |user| %>
+    <%= user.text_field :username %>
+  <% end %><br />
+  <br />
+  <input type="hidden" name="comment[post_id]" value="<%= @post.id %>">
+  <%= f.submit %>
+<% end %>
+
 
   </center>
   
