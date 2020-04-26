@@ -35,7 +35,8 @@ Post title: <h3><%= @post.name %></h3>
 <p>
 Album title:
 <%= @post.record.title %><br>
-  <%= image_tag @post.image %><br> 
+#
+  
 Contents: <%= @post.contents %>
 
 
@@ -44,7 +45,7 @@ Contents: <%= @post.contents %>
 Comments:
   <% @post.comments.each do |comment| %>
     <%= link_to comment.user.username, user_path(comment.user) %> said
-    <%= comment.content %>
+    <%= comment.message %>
   <% end %>
 
 <div class="@post">
@@ -64,8 +65,8 @@ Comments:
 </ul>
 <h3>Add a New Comment</h3>
 <%= form_for(@comment = Comment.new) do |f| %>
-  <%= f.label :content %>
-  <%= f.text_field :content %><br /><br />
+  <%= f.label :message %>
+  <%= f.text_field :message %><br /><br />
   <%= f.label "Username" %>
   <%= f.collection_select :user_id, User.all, :id, :username, :include_blank => true %><br /><br />
   <%= f.label "New User:" %>
@@ -75,8 +76,11 @@ Comments:
   <br />
   <input type="hidden" name="comment[post_id]" value="<%= @post.id %>">
   <%= f.submit %>
+
+  <% if @post.image.attached? %>
+  <%= image_tag @post.image %><br> 
 <% end %>
 
-
+<% end %>
   </center>
   

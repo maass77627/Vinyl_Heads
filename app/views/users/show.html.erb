@@ -10,6 +10,7 @@ Comments:
 
   <ul>
 <% @user.posts.each do |post| %>
+  
 <li><%= link_to post.name, post_path(post) %><li>
 <% end %>
 
@@ -25,4 +26,5 @@ Comments:
 <% else %>
 <%=     link_to "Login", :controller => 'sessions', :action => 'new' %>
 <% end %>
+
 </center

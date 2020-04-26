@@ -20,6 +20,8 @@ body {
 
       <% if current_user %>
       <%=     link_to "Logout", logout_path %>
+      
+       <%= link_to "Userspage", user_path(current_user.id) %>
       <% else %>
       <%=     link_to "Login", :controller => 'sessions', :action => 'new' %>
       <% end %>
