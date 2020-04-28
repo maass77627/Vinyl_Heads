@@ -10,10 +10,11 @@
         <%= f.fields_for :record do |record_attributes| %>
         <%= record_attributes.label :title %>
         <%= record_attributes.text_field :title %><br>
-        <%= f.fields_for :genre do |g| %>
-                <%= g.label :genre %>
-                <%= g.collection_select :genre, Genre.all, :name, :name %><br>
-                <% end %>
+
+        <%= f.fields_for :genre, @post.genre do |genre_attributes| %>
+                <%= genre_attributes.label :name %>
+           <%= genre_attributes.collection_select :name, Genre.all, :id, :name %><br>
+        <% end %>
 
         <% end %>
         <%= f.label :image %>

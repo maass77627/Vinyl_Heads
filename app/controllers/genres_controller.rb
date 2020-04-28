@@ -2,29 +2,28 @@ class GenresController < ApplicationController
 
     def index
         @genres = Genre.all
-
-    end 
+     end 
 
     def new
-        @genre = Genre.new
-
+        @genre = Genre.new(name: :name)
     end 
 
     def create
-        @genre = Genre.create(params_genre)
+        @genre = Genre.new(genre_params)
         if @genre.save
-            redirect_to genre_path
-
+            redirect_to genre_path(@genre)
+        end 
     end 
 
     def show
+        
         @genre = Genre.find(params_:id)
 
     end
     private 
 
     def genre_params
-            params.require(:genre).permit(:message, post_ids: [])
+            params.require(:genre).permit(:name, :id)
         end
 
     

@@ -27,10 +27,10 @@
         <%= record_attributes.label :title %>
         <%= record_attributes.text_field :title %><br>
         
-        <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
-        <%= f.fields_for :genre, @post.genres.build do |genres_fields| %>
-                <%= genres_fields.label :genre %>
-                <%= genres_fields.collection_select :genres, Genre.all, :name, :name %><br>
+       
+        <%= f.fields_for :genre, @post.genre do |genre_attributes| %>
+                     <%= genre_attributes.label :name %>
+                <%= genre_attributes.collection_select :name, Genre.all, :name, :name %><br>
                
                 <% end %>
         <% end %>

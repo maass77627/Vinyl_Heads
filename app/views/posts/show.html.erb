@@ -13,74 +13,17 @@
   </div>
 <% end %>
 
-
-
-
-
-
-
 <center>
-<li><%= link_to "Browse Records", records_path %><li>
-<br>
-<li><%= link_to "Make a Post", new_post_path %><li>
-<br>
-<li><%= link_to "View all Records", posts_path %><li>
-</ul>
-
-#<% @post.user = current_user %><br>
-
-<%= @post.user.username.pluralize.upcase %> post: <br>
- 
-Post title: <h3><%= @post.name %></h3>
+<%= @post.user.username.pluralize.upcase %><br> new post
+ <h3><%= @post.name %></h3><br>
 <p>
-Album title:
+Album title:<br>
 <%= @post.record.title %><br>
-#
-  
-Contents: <%= @post.contents %>
-
-
-<%= link_to "Edit", edit_post_path(@post) %>
-
-Comments:
-  <% @post.comments.each do |comment| %>
-    <%= link_to comment.user.username, user_path(comment.user) %> said
-    <%= comment.message %>
-  <% end %>
-
-<div class="@post">
-      <span><%= @post.name %></span>
-      #<%= link_to "Delete", @post, method: :delete, data: { confirm: "Really?" } %>
-      <%= button_to "Delete Post", post_path(@post), method: :delete %>
-    </div>
-    <% if current_user %>
-    <%= link_to @post.user.username, user_path(current_user.id) %><br>
-    <% end %>
-   #########
-    <p>Users</p>
-<ul>
-<% @post.users.uniq.each do |user| %>
-  <li><%= link_to user.username, user_path(user) %></li>
-<% end %>
-</ul>
-<h3>Add a New Comment</h3>
-<%= form_for(@comment = Comment.new) do |f| %>
-  <%= f.label :message %>
-  <%= f.text_field :message %><br /><br />
-  <%= f.label "Username" %>
-  <%= f.collection_select :user_id, User.all, :id, :username, :include_blank => true %><br /><br />
-  <%= f.label "New User:" %>
-  <%= f.fields_for :user, @comment.build_user do |user| %>
-    <%= user.text_field :username %>
-  <% end %><br />
-  <br />
-  <input type="hidden" name="comment[post_id]" value="<%= @post.id %>">
-  <%= f.submit %>
-
-  <% if @post.image.attached? %>
+Contents: <%= @post.contents %><br>
+<% if @post.image.attached? %>
   <%= image_tag @post.image %><br> 
-<% end %>
-
-<% end %>
+  <%= link_to "Edit Post", edit_post_path(@post) %>
+  <%= button_to "Delete Post", post_path(@post), method: :delete %>
   </center>
+  <% end %>
   

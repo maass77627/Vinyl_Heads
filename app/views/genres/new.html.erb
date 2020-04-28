@@ -1,8 +1,6 @@
-<%= form_for @genre do |f| %>
-    <% f.label = name %>
-    <% f.text_field = name %>
-    <input name="genre[post_ids][]">
-    <input name="genre[post_ids][]">
-    <input name="genre[post_ids][]">
-    <input type="submit" value="Submit">
-  <% end %>
+<%= form_for(@genre) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  
+  <%= f.submit %>
+ <% end %>

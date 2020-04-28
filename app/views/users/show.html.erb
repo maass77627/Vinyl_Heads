@@ -13,31 +13,38 @@ div {
 </head>
 <body>
 <center>
-<h2><%= @user.username %> </h2> has commented on the following posts:
+
+
+
+
+<h2><%= @user.username %> </h2> has commented on the following posts:<br>
 
 Comments:
   <% @user.comments.each do |comment| %>
     <%= link_to comment.user.username, user_path(comment.user) %> said
-    <%= comment.message %>
+    <%= comment.message %><br>
   <% end %>
-
-  <ul>
-<% @user.posts.each do |post| %>
-<div>
-<li><%= link_to post.name, post_path(post) %><li></div>
+      <p> 
+  Posts:
+  <% @user.posts.each do |post| %>
+    <%= post.name %> <br>
+    <% if post.image.attached? %>
+  <%= image_tag post.image %><br>
+    
+    <%= post.record.title %><br>
+    <%= post.genre.name %><br>
+    <%= button_to "delete", post, :method => :delete %><br>
+  <%= link_to post.name, post_path(@user, post) %><br></p> 
+<% end %>
 <% end %>
 
-<li><%= link_to "Browse Records", records_path %><li>
-<br>
-<li><%= link_to "Make a Post", new_post_path(:user_id => @users) %><li>  
-<br>
-<li><%= link_to "View all Records", posts_path %><li>
-</ul>
 
 <% if current_user %>
 <%=     link_to "Logout", logout_path %>
 <% else %>
 <%=     link_to "Login", :controller => 'sessions', :action => 'new' %>
+
+
+</center>
 <% end %>
 
-</center

@@ -1,12 +1,12 @@
 <center>
 <h1> Welcome! </h1>
 <%= link_to "Log_in", login_url %><br>
-    <%= link_to "Sign_up", '/signup' %>
+    <%= link_to "Sign_up", '/signup' %><br>
     <%= link_to('Log in with Facebook!', '/auth/facebook') %>
 
     <% if logged_in? %>
     <h1>You are Logged In, <%= current_user.username %></h1>
-    <%= link_to "Show", user_path(current_user) %><br>
+    <%= link_to "Your Home Page", user_path(current_user) %><br>
 
     <% end %>
    

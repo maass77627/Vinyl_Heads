@@ -3,32 +3,51 @@ class PostsController < ApplicationController
     def index
         @current_user = current_user
         @posts = Post.all
+        #@genres = Genre.all
+       # @posts << @genres
         end 
        
 
     def new
-      if current_user    #change
+         #change
         @post = Post.new
-        @post.user = current_user #change inserted 
-        @post.user.id = current_user.id
+        #@post.genre = Genre.new(name: :name)
+        #@post.genres << @genre
+       @post.user = current_user #change inserted ?????????
+       @post.user.id = current_user.id #???????
         new_record = @post.build_record(title: :title)
-       
        @post.record = Record.new(title: :title)
-       @post.record.user = current_user
-       @post.record.save
-    end
-  end #change
-    def create
-        @post = Post.create(post_params)
-       # binding.pry
-         @post.user = current_user
-         @post.image.attach(params[:post][:image]) #record
-         if @post.save && @post.image.attached?
-            redirect_to post_path(@post)
-        else 
-            render :new 
+       @post.genre = Genre.new(name: :name)
+      @post.record.user = current_user #?????????
+      # @post.record.save
+      @post.save
         end
-    end
+ #post[:genres][:post_genres] = "genre"
+ #change
+    #def create
+     # @post = Post.create(post_params)
+        # binding.pry
+        # record = @post.build_record(params[:post][:record_attributes])
+        # @post << record
+        # @post.user = current_user
+        # @post.image.attach(params[:post][:image]) #record
+        # if @post.save && @post.image.attached?
+           # redirect_to post_path(@post)
+       # else 
+           # render :new 
+       # end 
+        #end
+        def create
+          @post = Post.create(post_params)
+           @post.user = current_user
+           @post.image.attach(params[:post][:image])
+          if @post.save
+              redirect_to post_path(@post)
+          else 
+              render :new 
+          end
+      end
+    
 
     def edit
         @post = Post.find(params[:id])
@@ -53,12 +72,12 @@ class PostsController < ApplicationController
      @post = Post.find(params[:id])
      @post.destroy
   
-    redirect_to new_post_path
+    redirect_to users_path(@user)
     end 
 
     private
     
     def post_params
-      params.require(:post).permit(:name, :contents, :image, record_attributes: [:title, :user_id], genre_ids: [], genres_attributes: [:name]) #genrechangetook out user id
+      params.require(:post).permit(:name, :contents, :image, record_attributes: [:title], genre_attributes: [:genre_id, :name]) #genrechangetook out user id
     end
 end

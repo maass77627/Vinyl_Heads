@@ -36,6 +36,8 @@ div {
 <center>
 
 <% @posts.each do |post| %>
+
+  
   
   <li><h2><%= post.name %></h2></li> 
   <div>
@@ -45,11 +47,10 @@ div {
  <% end %>
   <% if post.image.attached? %>
   <li><%= image_tag post.image %></li>
+
   <% end %>
   
 
-
-  
   
   
   <%= link_to "Add Comment", new_comment_path(post_id: post.id) %>
