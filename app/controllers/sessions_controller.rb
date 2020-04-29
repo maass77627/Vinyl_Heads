@@ -21,14 +21,14 @@ end
 
 def facebook
     @user = User.find_or_create_by(uid: auth['uid']) do |u|
-      u.uid = auth['uid']
+     # u.uid = auth['uid']
+     u.username = auth['info']['name']
       u.password = 'Temporary'
       u.email = auth['info']['email']
-end
-
+    end
     session[:user_id] = @user.id
 
-    redirect_to '/'
+    redirect_to user_path(@user)
   end
 
 def destroy

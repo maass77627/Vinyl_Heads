@@ -1,67 +1,43 @@
 <% @posts.each do |post| %>
-<% if post.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(post.errors.count, "error") %>
-      prohibited this post from being saved:
-    </h2>
- 
-    <ul>
-    <% post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(post.errors.count, "error") %>
+        prohibited this post from being saved:
+      </h2>
+  
+      <ul>
+      <% post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 <% end %>
-
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-div {
-  background-color: lightgrey;
-  width: 400px;
-  border: 10px solid darkgrey;
-  padding: 20px;
-  margin: 20px;
-}
-</style>
-</head>
-<body>
-
-
-
-
-
 <center>
+
 
 <% @posts.each do |post| %>
 
-  
-  
-  <li><h2><%= post.name %></h2></li> 
-  <div>
-  <li><%= post.contents %></li> </div>
-  <% if !post.record.nil? %> 
- <li><h3><%= post.record.title %></h3></li> 
- <% end %>
-  <% if post.image.attached? %>
-  <li><%= image_tag post.image %></li>
-
-  <% end %>
-  
-
-  
-  
-  <%= link_to "Add Comment", new_comment_path(post_id: post.id) %>
-  <br>
-  Comments:
     <% post.comments.each do |comment| %>
-      <%= link_to comment.user.username, user_path(comment.user) %>
-      <%= comment.message %>
-    
-      <% end %>
+      <strong><%= comment.message %></strong>
+      <br>
+      <em style="font-size:12px; color:black">
+      posted by: <%= comment.user.username %>
+    <% end %>
+    <%= link_to "Add Comment", new_comment_path(post_id: post.id) %>
+    <li><h2><%= post.name %></h2></li> 
+    <li><%= post.contents %></li>
+    <% if !post.record.nil? %> 
+      <li><h3><%= post.record.title %></h3></li> 
+    <% end %>
+    <% if post.image.attached? %>
+      <li><%= image_tag post.image %></li>
     <% end %>
 <% end %>
+
+
+  </center>
+
 
 

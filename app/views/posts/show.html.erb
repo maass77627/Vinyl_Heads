@@ -19,11 +19,21 @@
 <p>
 Album title:<br>
 <%= @post.record.title %><br>
+Artist name:
+<%= @post.artist %><br>
+Genre:name
+<%= @post.genre_name %><br>
 Contents: <%= @post.contents %><br>
 <% if @post.image.attached? %>
   <%= image_tag @post.image %><br> 
   <%= link_to "Edit Post", edit_post_path(@post) %>
   <%= button_to "Delete Post", post_path(@post), method: :delete %>
   </center>
+  <% end %>
+
+  Comments:
+  <% @post.comments.each do |comment| %>
+    <%= link_to comment.user.username, user_path(comment.user) %> said
+    <%= comment.content %> ########
   <% end %>
   

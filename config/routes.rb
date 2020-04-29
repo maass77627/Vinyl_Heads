@@ -7,6 +7,12 @@ post '/login', to: "sessions#create"
 get '/logout', to: "sessions#destroy", as: "logout"
 #get 'authorized', to: 'sessions#page_requires_login'
 get '/auth/facebook/callback' => 'sessions#facebook' #changedfromcreate
+
+resources :artists, only: [:index, :show] do###
+  # nested resource for posts
+  resources :posts, only: [:show, :index]
+end
+
 resources :users
 
 resources :posts

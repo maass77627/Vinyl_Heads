@@ -16,24 +16,30 @@ class Post < ApplicationRecord
     has_one :record
     has_many :comments
     has_many :users, through: :comments
-    accepts_nested_attributes_for :record, :genre
+    accepts_nested_attributes_for :record, :genre#, :artist
     has_one_attached :image
+    belongs_to :artist
 
-      
- # def genre_attributes=(genre_attribute)
-   # genre_attributes.values.each do |genre_attribute|
-    #  genre = Genre.find_or_create_by(genre_attribute)
-    #  self.post_genres.build(genre: genre)
-   # end
- # end
+    def self.by_artist(artist_id)###
+      where(artist: artist_id)
+    end
+    
 
+    def genre_name=(name)
+      self.genre = Genre.find_or_create_by(name: name)
+    end
   
-  def genre_ids=(ids)
-    ids.each do |id|
-   genre = Genre.find_or_create_by(id)
-      self.genres << genre
-     end
-end 
+    def genre_name
+       self.genre ? self.genre.name : nil
+    end
+
+    def artist_name=(name)
+      self.artist = Artist.find_or_create_by(name: name)
+    end
+  
+    def artist_name
+       self.artist ? self.artist.name : nil
+    end
 
        def user_ids=(ids)
        ids.each do |id|

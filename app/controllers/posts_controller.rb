@@ -1,44 +1,31 @@
 class PostsController < ApplicationController
-
+ 
     def index
         @current_user = current_user
+        if params[:artist_id]
+          @posts = Artist.find(params[:artist_id]).posts
+        else
         @posts = Post.all
-        #@genres = Genre.all
-       # @posts << @genres
         end 
-       
+      end
 
     def new
-         #change
-        @post = Post.new
-        #@post.genre = Genre.new(name: :name)
-        #@post.genres << @genre
-       @post.user = current_user #change inserted ?????????
-       @post.user.id = current_user.id #???????
-        new_record = @post.build_record(title: :title)
-       @post.record = Record.new(title: :title)
-       @post.genre = Genre.new(name: :name)
-      @post.record.user = current_user #?????????
-      # @post.record.save
-      @post.save
+         @post = Post.new
+         @post.user = current_user 
+         @post.user.id = current_user.id 
+         new_record = @post.build_record(title: :title)
+         @post.record = Record.new(title: :title)
+         @post.genre = Genre.new(name: :name)
+         @post.record.user = current_user 
+         @post.save
         end
- #post[:genres][:post_genres] = "genre"
- #change
-    #def create
-     # @post = Post.create(post_params)
-        # binding.pry
-        # record = @post.build_record(params[:post][:record_attributes])
-        # @post << record
-        # @post.user = current_user
-        # @post.image.attach(params[:post][:image]) #record
-        # if @post.save && @post.image.attached?
-           # redirect_to post_path(@post)
-       # else 
-           # render :new 
-       # end 
-        #end
+ 
         def create
           @post = Post.create(post_params)
+          new_genre = @post.build_genre(name: "new")
+          new_genre.save
+          new_artist = @post.build_artist(name: "new")
+          new_artist.save
            @post.user = current_user
            @post.image.attach(params[:post][:image])
           if @post.save
@@ -65,7 +52,6 @@ class PostsController < ApplicationController
         
     def show
         @post = Post.find(params[:id])
-        #binding.pry
     end
     
     def destroy
@@ -78,6 +64,6 @@ class PostsController < ApplicationController
     private
     
     def post_params
-      params.require(:post).permit(:name, :contents, :image, record_attributes: [:title], genre_attributes: [:genre_id, :name]) #genrechangetook out user id
+      params.require(:post).permit(:name, :contents, :image, :genre_name, :artist_name, record_attributes: [:title])
     end
 end
