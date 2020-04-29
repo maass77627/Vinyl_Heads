@@ -10,7 +10,10 @@ class ArtistsController < ApplicationController
         @post = Post.find(params[:post_id])##
         render template: 'posts/show'
       end
-
+    def new
+        @artist = Artist.new 
+    end 
+    
       def show 
         @artist = Artist.find(params[:id])
       end 

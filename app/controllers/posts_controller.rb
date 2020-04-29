@@ -1,26 +1,27 @@
 class PostsController < ApplicationController
- 
+  
     def index
+      if params[:genre_id]
+        @posts = Genre.find(params[:genre_id]).posts
         @current_user = current_user
-        if params[:artist_id]
-          @posts = Artist.find(params[:artist_id]).posts
-        else
-        @posts = Post.all
-        end 
-      end
+        binding.pry
+      else
+         @posts = Post.all
+     end 
+    end
 
     def new
          @post = Post.new
          @post.user = current_user 
          @post.user.id = current_user.id 
          new_record = @post.build_record(title: :title)
-         @post.record = Record.new(title: :title)
+        @post.record = Record.new(title: :title)
          @post.genre = Genre.new(name: :name)
-         @post.record.user = current_user 
-         @post.save
+        @post.record.user = current_user 
+        @post.save
         end
  
-        def create
+    def create
           @post = Post.create(post_params)
           new_genre = @post.build_genre(name: "new")
           new_genre.save
@@ -28,27 +29,25 @@ class PostsController < ApplicationController
           new_artist.save
            @post.user = current_user
            @post.image.attach(params[:post][:image])
-          if @post.save
-              redirect_to post_path(@post)
-          else 
-              render :new 
+        if @post.save
+           redirect_to post_path(@post)
+        else 
+            render :new 
           end
       end
     
-
     def edit
         @post = Post.find(params[:id])
-      end
+    end
 
-      def update
+    def update
         @post = Post.find(params[:id])
-    
-        if @post.update(post_params)
+      if @post.update(post_params)
           redirect_to @post
-        else
-          render 'edit'
-        end
+      else
+        render 'edit'
       end
+    end
         
     def show
         @post = Post.find(params[:id])
@@ -57,8 +56,7 @@ class PostsController < ApplicationController
     def destroy
      @post = Post.find(params[:id])
      @post.destroy
-  
-    redirect_to users_path(@user)
+      redirect_to users_path(@user)
     end 
 
     private

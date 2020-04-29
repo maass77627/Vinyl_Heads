@@ -12,7 +12,7 @@ class RecordsController < ApplicationController
         @record = Record.create(record_params)
        #@record.user = current_user
         if @record.save
-            redirect_to record_path(@record)
+        redirect_to record_path(@record)
         end
     end
     

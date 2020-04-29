@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-   # validates :id, presence: true
    # devise :omniauthable, :omniauth_providers => [:facebook]
     validates :username, :email, presence: true
     #validates :email, :username, uniqueness: true

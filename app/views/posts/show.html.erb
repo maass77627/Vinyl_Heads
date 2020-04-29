@@ -1,26 +1,11 @@
-<% if @post.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@post.errors.count, "error") %>
-      prohibited this post from being saved:
-    </h2>
- 
-    <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <center>
 <%= @post.user.username.pluralize.upcase %><br> new post
  <h3><%= @post.name %></h3><br>
 <p>
-Album title:<br>
+album title:<br>
 <%= @post.record.title %><br>
-Artist name:
-<%= @post.artist %><br>
+artist name:
+<%= @post.artist_name %><br>
 Genre:name
 <%= @post.genre_name %><br>
 Contents: <%= @post.contents %><br>

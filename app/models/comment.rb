@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-    belongs_to :user #optional: true
+    belongs_to :user 
     belongs_to :post
     validates :message, presence: true, allow_blank: false
     accepts_nested_attributes_for :user, reject_if: proc { |attributes| attributes['username'].blank?}

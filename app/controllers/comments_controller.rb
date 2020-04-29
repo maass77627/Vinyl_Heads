@@ -12,9 +12,9 @@ class CommentsController < ApplicationController
       def create
         @comment = Comment.new(comment_params)
         @comment.user = current_user
-        if @comment.save
+       if @comment.save
           redirect_to posts_path
-        else
+       else
           flash[:notice] = "Fields Cannot be Blank"
           redirect_to posts_path
         end

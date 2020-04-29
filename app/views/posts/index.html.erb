@@ -1,23 +1,17 @@
-<% @posts.each do |post| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(post.errors.count, "error") %>
-        prohibited this post from being saved:
-      </h2>
-  
-      <ul>
-      <% post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<div>
+  <h3>Filter posts:</h3>
+  <%= form_tag("/posts", method: "get") do %>
+    <%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %>
+    <%= submit_tag "Filter" %>
   <% end %>
-<% end %>
-<center>
+</div>
 
 
 <% @posts.each do |post| %>
+
+  <h2><%= post.name %></h2>
+  <h3>by: <%= link_to post.genre.name, genre_posts_path(post.genre) %></h3>
+  <p><%= post.description %></p>
 
     <% post.comments.each do |comment| %>
       <strong><%= comment.message %></strong>
@@ -28,6 +22,8 @@
     <%= link_to "Add Comment", new_comment_path(post_id: post.id) %>
     <li><h2><%= post.name %></h2></li> 
     <li><%= post.contents %></li>
+    <%= post.artist_name %><br> 
+    <%= post.genre.name %><br>
     <% if !post.record.nil? %> 
       <li><h3><%= post.record.title %></h3></li> 
     <% end %>
@@ -37,7 +33,7 @@
 <% end %>
 
 
-  </center>
+  
 
 
-
+  
