@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lists
   get '/', to: 'application#home'
   get '/signup', to: 'users#new'
 post '/signup', to: 'users#create'
@@ -10,7 +11,7 @@ get '/auth/facebook/callback' => 'sessions#facebook' #changedfromcreate
 
 resources :genres, only: [:show] do
   # nested resource for posts
-  resources :posts, only: [:show, :index]
+  resources :posts, only: [:show, :index, :new]
 end
 
 resources :users

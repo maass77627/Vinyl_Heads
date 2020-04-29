@@ -4,11 +4,11 @@ class Post < ApplicationRecord
     has_one :record
     has_many :comments
     has_many :users, through: :comments
-    accepts_nested_attributes_for :record, :genre#, :artist
+    accepts_nested_attributes_for :record, :genre
     has_one_attached :image
     belongs_to :artist
 
-    def self.by_genre(genre_id)###
+    def self.by_genre(genre_id)
       where(genre: genre_id)
     end
   

@@ -3,14 +3,15 @@
   <%= form_tag("/posts", method: "get") do %>
     <%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %>
     <%= submit_tag "Filter" %>
+    <h3>by: <%= link_to @post.genre.name, genre_posts_path(@post.genre) %></h3>
   <% end %>
-</div>
+</div> 
 
 
 <% @posts.each do |post| %>
 
   <h2><%= post.name %></h2>
-  <h3>by: <%= link_to post.genre.name, genre_posts_path(post.genre) %></h3>
+  
   <p><%= post.description %></p>
 
     <% post.comments.each do |comment| %>
