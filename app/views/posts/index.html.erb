@@ -3,16 +3,16 @@
   <%= form_tag("/posts", method: "get") do %>
     <%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %>
     <%= submit_tag "Filter" %>
-    <h3>by: <%= link_to @post.genre.name, genre_posts_path(@post.genre) %></h3>
+    
   <% end %>
-</div> 
+
 
 
 <% @posts.each do |post| %>
 
   <h2><%= post.name %></h2>
   
-  <p><%= post.description %></p>
+  <p><%= post.contents %></p>
 
     <% post.comments.each do |comment| %>
       <strong><%= comment.message %></strong>
@@ -21,17 +21,19 @@
       posted by: <%= comment.user.username %>
     <% end %>
     <%= link_to "Add Comment", new_comment_path(post_id: post.id) %>
-    <li><h2><%= post.name %></h2></li> 
-    <li><%= post.contents %></li>
-    <%= post.artist_name %><br> 
-    <%= post.genre.name %><br>
+    <div><li><h2><%= post.name %></h2></li> </div>
+   <div> <li><%= post.contents %></li></div>
+   <div> <%= post.artist_name %><br> </div>
+   
     <% if !post.record.nil? %> 
-      <li><h3><%= post.record.title %></h3></li> 
+    <div>  <li><h3><%= post.record.title %></h3></li> </div>
     <% end %>
     <% if post.image.attached? %>
       <li><%= image_tag post.image %></li>
     <% end %>
 <% end %>
+
+
 
 
   
