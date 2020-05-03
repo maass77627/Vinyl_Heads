@@ -1,28 +1,33 @@
 <h2><%= @user.username %> </h2> has commented on the following posts:<br>
 
 Comments:
-  <% @user.comments.each do |comment| %>
+    <% @user.comments.each do |comment| %>
     <%= link_to comment.user.username, user_path(comment.user) %> said
     <%= comment.message %><br>
-  <% end %>
+    <% end %>
       
-  Posts:<br>
-  <% @user.posts.each do |post| %>
-   POST: <%= post.name %> <br>
+    Posts:<br>
+    <% @user.posts.each do |post| %>
+    POST: <%= post.name %> <br>
     <% if post.image.attached? %>
-  <%= image_tag post.image %><br>
+    <%= image_tag post.image %><br>
+    <% end %>
     Album Title:
     <%= post.record.title %><br>
     Genre:
-    <%= post.genres.name %><br>
-    <%= post.artist_name %><br>
+    <% post.genres.each do |genre| %>
+    <%= genre.name %><br>
+    <% end %>
+    <%= post.artist.name %><br>
+    <% post.categories.each do |category| %>
+    <%= category.name %>
+    <% end %>
     Contents:
     <%= post.contents %><br>
     <%= link_to "Edit Post", edit_post_path(post) %><br>
     <%= button_to "delete", post, :method => :delete %><br>
-  <%= link_to post.name, post_path(@user, post) %><br>
-<% end %>
-<% end %>
+    <%= link_to post.name, post_path(@user, post) %><br>
+    <% end %>
 
 
 <% if current_user %>

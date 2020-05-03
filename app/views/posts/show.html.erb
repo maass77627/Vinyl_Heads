@@ -8,14 +8,14 @@ artist name:
 <%= @post.artist.name %><br>
 Genre:name
 <% @post.genres.each do |genre| %><br>
-<%= genre.name %> <br>
+<%= genre.name %><br>
 <% end %>
-<br> Contents: <%= @post.contents %><br>
-<% if @post.image.attached? %>
-<%= image_tag @post.image %><br> 
+<br><% if @post.image.attached? %>
+<%= image_tag @post.image %><br>
 <% @post.categories.each do |category| %><br>
 <%= category.name %><br>
 <% end %>
+<br> Contents: <%= @post.contents %><br>
 <%= link_to "Edit Post", edit_post_path(@post) %>
   
 <%= button_to "Delete post", post_path(@post), method: :delete %>

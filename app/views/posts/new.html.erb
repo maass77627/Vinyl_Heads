@@ -11,7 +11,6 @@
         <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
   
         <%= f.collection_select :genres, Genre.all, :id, :name %><br>
-                                                 ###
         <%= f.fields_for :record, @post.record do |record_attributes| %>
         <%= record_attributes.label :Record_Title %>
         <%= record_attributes.text_field :title %><br>
@@ -19,13 +18,9 @@
         <%= f.fields_for :artist, @post.artist do |artist_attributes| %>
           <%= artist_attributes.label :artist_name %>
           <%= artist_attributes.text_field :name %><br>
-        
-       
-        
         <% end %>
         <%= f.submit %>
         <% end %>
         </center>
-
         <% end %>
    

@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!DOCTYPE html>
-<html>
-<head>
-
-
 <style>
 div {
   background-color: lightgrey;
@@ -38,11 +33,20 @@ p {
       <h5 style="font-family:'Courier New';" style="color:Black;"><strong>start up a conversation</strong></h5>
       </p>
     </div>
-  <style>
-body {
-  background-image: url('https://www.google.com/imgres?imgurl=http%3A%2F%2Fmake-that-a-take.cofeyifzyha5chlzpiqo.netdna-cdn.com%2Fwp-content%2Fuploads%2F2015%2F12%2Fturntable_records.jpg&imgrefurl=http%3A%2F%2Fwww.makethatatakerecords.com%2F2015-recommended-records-of-the-year%2F&tbnid=M2KV89oIe74GJM&vet=12ahUKEwiY4d3Yj_3oAhUSyKwKHRA8BaEQMyg8egUIARCpAQ..i&docid=GYUcvrJwpfoTsM&w=1450&h=816&q=records%20images&ved=2ahUKEwiY4d3Yj_3oAhUSyKwKHRA8BaEQMyg8egUIARCpAQ');
-}
-</style>
+
+   <div class="nav">
+     <p style="text-align:center;" style="color:DarkBlue;">
+     <% if current_user %>
+     <%= link_to "Logout", logout_path %>
+     <%= link_to "Userspage", user_path(current_user.id) %>
+     <%= link_to "Browse Records", records_path %>
+     <%= link_to "Make a Post", new_post_path %>
+     <%= link_to "View all Records", posts_path %>
+     <% else %>
+     <%= link_to "Login", :controller => 'sessions', :action => 'new' %>
+     <% end %>
+     </p>
+  </div>
     <title>Vinyl_Heads</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -51,23 +55,6 @@ body {
   </head>
  
   <body>
-
-  <div class="nav">
-      <p style="text-align:left;" style="color:DarkBlue;">
-
-      <% if current_user %>
-      <%=     link_to "Logout", logout_path %><br>
-      
-       <%= link_to "Userspage", user_path(current_user.id) %><br>
-       <%= link_to "Browse Records", records_path %><br>
-      <%= link_to "Make a Post", new_post_path %><br>
-      <%= link_to "View all Records", posts_path %><br>
-      <% else %>
-      <%=     link_to "Login", :controller => 'sessions', :action => 'new' %>
-      <% end %>
-    
-     </p>
-    </div>
 
     
 <center>

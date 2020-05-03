@@ -1,46 +1,32 @@
-
-  <h3>Filter posts:</h3>
+<h3>Filter posts:</h3>
   <%= form_tag("/posts", method: "get") do %>
     <%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %>
     <%= submit_tag "Filter" %>
-    
   <% end %>
 
+  <% @posts.each do |post| %>
 
-
-<% @posts.each do |post| %>
-
-
- <strong> <h3><%= post.name %></h3> </strong>
-  
-   <%= post.contents %> <br>
-
-    <% post.comments.each do |comment| %>
-     COMMENT: <strong><%= comment.message %></strong> <br>
-      <br>
-      <em style="font-size:14px; color:black">
-      posted by: <%= comment.user.username %>
+  <strong> <h3><%= post.name %></h3> </strong><br>
+  ALBUM:<p><%= post.record.title %></p>
+  ARTIST:<p><%= post.artist.name %></p>
+  <% post.genres.each do |genre| %>
+    GENRE:<p><%= genre.name %></p>
     <% end %>
-    <%= link_to "Add Comment", new_comment_path(post_id: post.id) %>
-    POST:<h2><%= post.name %></h2>
-   
-  
-   
-    <% if !post.record.nil? %> 
-   ALBUM:<p><%= post.record.title %></p>
+  <% if post.image.attached? %>
+  <li><%= image_tag post.image %></li>
+  <% end %>
+  <% post.categories.each do |category| %><br>
+    <%= category.name %><br>
     <% end %>
-    <% if post.image.attached? %>
-      <li><%= image_tag post.image %></li>
-      <% end %>
-      ARTIST:<p><%= post.artist.name %></p>
-      <% post.genres.each do |genre| %>
-   GENRE:<p><%= genre.name %></p>
-   <% end %>
-      <div><%= post.contents %></div>
-      <% post.categories.each do |category| %><br>
-        <%= category.name %><br>
-        <% end %>
-    <% end %>
+  <div><%= post.contents %></div>
+  <% post.comments.each do |comment| %>
+  COMMENT: <strong><%= comment.message %></strong> <br>
+  <br>
+  <em style="font-size:14px; color:black">
+  posted by: <%= comment.user.username %>
+  <% end %>
+  <%= link_to "Add Comment", new_comment_path(post_id: post.id) %>
+  <% end %>
 
 
 
