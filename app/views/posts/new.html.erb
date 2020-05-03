@@ -1,3 +1,4 @@
+<%= render "form" %>
 <center>
 <h1>Make A New Post</h1>
 <%= form_for(@post) do |f| %>
@@ -7,12 +8,18 @@
         <%= f.text_area :contents, size: "30x5" %><br>
         <%= f.label :image %>
         <%= f.file_field :image %>
-        <%= f.label :genre_name %>
-        <%= f.collection_select :genre_name, Genre.all, :name, :name %>
-       
+        
+        <%= f.collection_select :genres, Genre.all, :id, :name %>
+        
+        <%= f.fields_for :genres, @post.genres do |genre_attributes| %>
+        <%= genre_attributes.label :genre_name %>
+        <%= genre_attributes.text_field :name %>
+        
+                                                 ###
         <%= f.fields_for :record, @post.record do |record_attributes| %>
         <%= record_attributes.label :Record_Title %>
         <%= record_attributes.text_field :title %><br>
+       
         <%= f.fields_for :artist, @post.artist do |artist_attributes| %>
           <%= artist_attributes.label :artist_name %>
           <%= artist_attributes.text_field :name %><br>
@@ -23,4 +30,6 @@
         <%= f.submit %>
         <% end %>
         </center>
+
+        <% end %>
    

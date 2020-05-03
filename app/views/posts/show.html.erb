@@ -1,24 +1,25 @@
 <center>
 <%= @post.user.username.pluralize.upcase %><br> new post
- <h3><%= @post.name %></h3><br>
+<div> <h3><%= @post.name %></h3><br></div>
 <p>
 album title:<br>
 <%= @post.record.title %><br>
 artist name:
-<%= @post.artist_name %><br>
+<%= @post.artist.name %><br>
 Genre:name
-<%= @post.genre_name %><br>
+<%= @post.genres.name %><br>
 Contents: <%= @post.contents %><br>
 <% if @post.image.attached? %>
   <%= image_tag @post.image %><br> 
   <%= link_to "Edit Post", edit_post_path(@post) %>
-  <%= button_to "Delete Post", post_path(@post), method: :delete %>
+  
+  <%= button_to "Delete post", post_path(@post), method: :delete %>
   </center>
   <% end %>
 
   Comments:
   <% @post.comments.each do |comment| %>
     <%= link_to comment.user.username, user_path(comment.user) %> said
-    <%= comment.content %> ########
+    <%= comment.content %> 
   <% end %>
   

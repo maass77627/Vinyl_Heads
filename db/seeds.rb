@@ -1,8 +1,21 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
-# Examples:
-#
+# Examples:user_1 = User.create(email: "jhende34@myvu.vinu.edu", password: "password", uid: "10155920593441031")
+post_1 = Post.create(name: "test", contents: "testing", id: 1, user_id: 1, artist_id: 1)
+post_2 = Post.create(name: "test2", contents: "testing2",id: 2, user_id: 2, artist_id: 2)
+#artist_1 = Artist.create(name: "artisttest", id: 1)
+#artist_2 = Artist.create(name: "artisttest2", id: 2)
+#artist_3 = Artist.create(name: "artisttest3", id: 3)
+#genre_1 = Genre.create(name: "genretest", id: 1)
+#genre_2 = Genre.create(name: "genretest2", id: 2)
+#genre_3 = Genre.create(name: "genretest3", id: 3)
+post_genres_1 = PostGenre.create(post_id: 1, genre_id: 1)
+post_genres_2 = PostGenre.create(post_id: 2, genre_id: 2)
+post_genres_3 = PostGenre.create(post_id: 3, genre_id: 3)
+record_1 = Record.create(title: "recordtest", id: 1, user_id: 1, artist_id: 1, genre_id: 1)
+record_2 = Record.create(title: "recordtest", id: 2, user_id: 2, artist_id: 2, genre_id: 2)
+record_3 = Record.create(title: "recordtest", id: 3, user_id: 3, artist_id: 3, genre_id: 3)
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
@@ -157,13 +170,8 @@ genres = Hash[[
   "Synthpop"
 ].map { |genre| [genre, Genre.find_or_create_by(name: genre)] }]
 
-artists = Hash[[
-  "The Beatles",
-  "Elvis Presley",
-  "Bon Iver",
-  "The Shins",
-  "The Pixies",
-  "Elton John",
-  "Modest Mouse",
-  "David Bowie",
-].map { |artist| [artist, Artist.find_or_create_by(name: artist)] }]
+categories = Hash[[
+  "sell",
+  "trade",
+  "just_for_show"
+].map { |category| [category, Category.find_or_create_by(name: category)] }]

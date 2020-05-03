@@ -6,13 +6,17 @@
         <%= f.label :contents %>
         <%= f.text_field :contents %><br>
         <%= f.hidden_field :user_id %>
+
+        <%= f.fields_for :artist, @post.artist do |artist_attributes| %>
+                <%= artist_attributes.label :artist_name %>
+                <%= artist_attributes.text_field :name %><br>
        
         <%= f.fields_for :record do |record_attributes| %>
-        <%= record_attributes.label :title %>
+        <%= record_attributes.label :record_title %>
         <%= record_attributes.text_field :title %><br>
 
-        <%= f.fields_for :genre, @post.genre do |genre_attributes| %>
-                <%= genre_attributes.label :name %>
+        <%= f.fields_for :genres, @post.genres do |genre_attributes| %>
+                <%= genre_attributes.label :genre_name %>
            <%= genre_attributes.collection_select :name, Genre.all, :id, :name %><br>
         <% end %>
 
@@ -21,4 +25,4 @@
         <%= f.file_field :image %><br>
         <%= f.submit %>
         <% end %>
-</center>
+</center><% end %>

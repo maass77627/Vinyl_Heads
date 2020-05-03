@@ -2,7 +2,7 @@ class User < ApplicationRecord
    # devise :omniauthable, :omniauth_providers => [:facebook]
     validates :username, :email, presence: true
     #validates :email, :username, uniqueness: true
-    validates :password, length: { in: 6..20 }
+   #validates :password, length: { in: 6..20 }
     validates :username, format: { without: /[0-9]/, message: "does not allow numbers" }
    # has_many :genres
     has_many :comments

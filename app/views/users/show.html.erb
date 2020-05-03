@@ -5,22 +5,22 @@ Comments:
     <%= link_to comment.user.username, user_path(comment.user) %> said
     <%= comment.message %><br>
   <% end %>
-      <p> 
-  Posts:
+      
+  Posts:<br>
   <% @user.posts.each do |post| %>
-    <%= post.name %> <br>
+   POST: <%= post.name %> <br>
     <% if post.image.attached? %>
   <%= image_tag post.image %><br>
     Album Title:
     <%= post.record.title %><br>
     Genre:
-    <%= post.genre.name %><br>
+    <%= post.genres.name %><br>
     <%= post.artist_name %><br>
     Contents:
     <%= post.contents %><br>
     <%= link_to "Edit Post", edit_post_path(post) %><br>
     <%= button_to "delete", post, :method => :delete %><br>
-  <%= link_to post.name, post_path(@user, post) %><br></p> 
+  <%= link_to post.name, post_path(@user, post) %><br>
 <% end %>
 <% end %>
 

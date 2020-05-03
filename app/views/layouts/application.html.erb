@@ -1,6 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<style>
+div {
+  background-color: lightgrey;
+  width: 300px;
+  border: 20px solid gray;
+  padding: 5px;
+  margin: 20px;
+  text-align: center
+}
+</style>
+
+<style>
+p {
+  background-color: lightgrey;
+  width: 100px;
+  border: 5px solid pink;
+  padding: 4px;
+  margin: 20px;
+  text-align: center
+}
+</style>
+</head>
+<body>
+
 <div class="container">
       <p style="text-align:left;">
         <h1 style="font-family:'Courier New';" style="color:Black;"><strong>Vinyl Heads</strong></h1>
@@ -27,7 +56,7 @@ body {
       <p style="text-align:left;" style="color:DarkBlue;">
 
       <% if current_user %>
-      <%=     link_to "Logout", logout_path %>
+      <%=     link_to "Logout", logout_path %><br>
       
        <%= link_to "Userspage", user_path(current_user.id) %><br>
        <%= link_to "Browse Records", records_path %><br>
