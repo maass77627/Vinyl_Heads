@@ -28,6 +28,7 @@ class PostsController < ApplicationController
  
     def create
           @post = Post.create(post_params)
+          binding.pry
           @post.user = current_user
           @post.image.attach(params[:post][:image])
         if @post.save
@@ -64,7 +65,7 @@ class PostsController < ApplicationController
     private
     
     def post_params
-      params.require(:post).permit(:name, :contents, :image, :user_id, genres_attributes: [:name, :id], artist_attributes: [:name, :id], record_attributes: [:title, :id])
+      params.require(:post).permit(:name, :contents, :image, :user_id, category_ids: [], genres_attributes: [:name, :id], artist_attributes: [:name, :id], record_attributes: [:title, :id])
       
     end
 end

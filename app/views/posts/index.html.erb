@@ -31,11 +31,17 @@
     <% end %>
     <% if post.image.attached? %>
       <li><%= image_tag post.image %></li>
+      <% end %>
       ARTIST:<p><%= post.artist.name %></p>
-   GENRE:<p><%= post.genres %></p>
+      <% post.genres.each do |genre| %>
+   GENRE:<p><%= genre.name %></p>
+   <% end %>
       <div><%= post.contents %></div>
+      <% post.categories.each do |category| %><br>
+        <%= category.name %><br>
+        <% end %>
     <% end %>
-<% end %>
+
 
 
 
