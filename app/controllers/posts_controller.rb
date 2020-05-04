@@ -1,18 +1,13 @@
 class PostsController < ApplicationController
   
-    def index
-      if params[:genre_id]
-        @genre = Genre.find_by(id: params[:genre_id])
-      if @genre.posts.empty?
-        flash[:alert] = "This genre has no posts. Please add one below."
-        redirect_to new_genre_path(@genre)
-      else
-        @posts = @genre.posts
+      def index
+        @artists = Artist.all
+        if !params[:artist].blank?
+          @posts = Post.by_artist(params[:artist])
+        else 
+          @posts = Post.all
+        end
       end
-      else
-        @posts = Post.all
-      end
-    end
 
     def new
         @post = Post.new
@@ -53,6 +48,7 @@ class PostsController < ApplicationController
         
     def show
         @post = Post.find(params[:id])
+        binding.pry
     end
     
     def destroy

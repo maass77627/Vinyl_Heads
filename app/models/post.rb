@@ -15,8 +15,8 @@ class Post < ApplicationRecord
     has_many :post_categories
     has_many :categories, through: :post_categories
     
-    def self.by_genre(genre_id)
-      where(genre: genre_id)
+    def self.by_artist(artist_id)
+      where(artist: artist_id)
     end
     
       def user_ids=(ids)

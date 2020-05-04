@@ -11,13 +11,11 @@ get '/logout', to: "sessions#destroy", as: "logout"
 #get 'authorized', to: 'sessions#page_requires_login'
 get '/auth/facebook/callback' => 'sessions#facebook' #changedfromcreate
 #get '/delete', to: "posts#destroy", as: "delete"
-resources :genres, only: [:show] do
-  # nested resource for posts
+resources :artists, only: [:show] do
  resources :posts, only: [:show, :index]
 end
 
 resources :users
-resources :wishboard
 resources :posts
 resources :comments
 resources :artists

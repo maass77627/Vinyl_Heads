@@ -5,7 +5,7 @@ class GenresController < ApplicationController
      end 
 
     def new
-        @genre = Genre.find(params[:id])#new(name: :name)
+        @genre = Genre.find(params[:id])
     end 
 
     def create
@@ -16,8 +16,7 @@ class GenresController < ApplicationController
     end 
 
     def show
-        binding.pry
-        @genre = Genre.find(params[:id])
+        @genre = Genre.find_by_id(:id)
     end
     
     private 

@@ -1,6 +1,6 @@
 <h3>Filter posts:</h3>
   <%= form_tag("/posts", method: "get") do %>
-    <%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %>
+    <%= select_tag "artist", options_from_collection_for_select(@artists, "id", "name") %>
     <%= submit_tag "Filter" %>
   <% end %>
 
